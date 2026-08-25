@@ -8,12 +8,18 @@ if TYPE_CHECKING:
 
 @dataclass(frozen=True)
 class RawPost:
-    """Один публичный пост/комментарий, полученный от платформы."""
+    """Один публичный пост/комментарий, полученный от платформы.
+
+    has_media=True — в посте есть фото/видео/стикер и т.п. Содержимое самого
+    файла система не анализирует (это потребовало бы компьютерного зрения),
+    поэтому такие посты помечаются для ручного просмотра специалистом, а не
+    молча отбрасываются."""
 
     external_id: str
     text: str
     author_label: str
     published_at: datetime
+    has_media: bool = False
 
 
 class PlatformConnector(Protocol):

@@ -8,6 +8,7 @@ from app.connectors.registry import get_connector
 from app.db import SessionLocal
 from app.models import Post, RiskSignal, WatchSource
 from app.risk_engine.scorer import score_post
+from app.services.custom_markers import as_extra_markers
 
 logger = logging.getLogger("risk_watchlist.polling")
 
@@ -57,6 +58,7 @@ def poll_single_source(source_id: int) -> bool:
 def _poll_one_source(db, source: WatchSource) -> None:
     connector = get_connector(source.connector_type)
     raw_posts = connector.fetch_new_posts(source, source.last_polled_at)
+    extra_markers = as_extra_markers(db)
 
     for raw in raw_posts:
         exists = db.execute(
@@ -71,11 +73,12 @@ def _poll_one_source(db, source: WatchSource) -> None:
             text=raw.text,
             author_label=raw.author_label,
             published_at=raw.published_at,
+            has_media=raw.has_media,
         )
         db.add(post)
         db.flush()
 
-        assessment = score_post(raw.text)
+        assessment = score_post(raw.text, extra_markers=extra_markers)
         if assessment.level is not None:
             db.add(
                 RiskSignal(

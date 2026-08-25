@@ -146,14 +146,21 @@ class TelegramConnector:
                 continue
 
             text = (post.get("text") or post.get("caption") or "").strip()
-            if not text:
-                continue
+            has_media = _has_media(post)
+            if not text and not has_media:
+                continue  # ни текста, ни медиа — служебное сообщение, нечего показывать
 
             # Автоматическая пересылка поста канала в группу обсуждений тоже
             # приходит как message в этой группе — это дубль самого поста,
             # а не комментарий к нему, пропускаем, чтобы не считать его дважды.
             if is_comment and post.get("is_automatic_forward"):
                 continue
+
+            if not text:
+                # Картинку/стикер/видео система не анализирует (нет
+                # компьютерного зрения) — вместо того чтобы молча
+                # пропустить пост, помечаем его для ручного просмотра.
+                text = "[медиа без подписи — фото/видео/стикер, требуется ручной просмотр]"
 
             message_id = post.get("message_id")
             author_label = _author_label(post, chat, channel_username)
@@ -166,6 +173,7 @@ class TelegramConnector:
                     text=text,
                     author_label=author_label,
                     published_at=post_date,
+                    has_media=has_media,
                 )
             )
 
@@ -198,6 +206,13 @@ def _get_linked_chat_id(token: str, channel_username: str, source: "WatchSource"
         return None
 
     return data.get("result", {}).get("linked_chat_id")
+
+
+_MEDIA_KEYS = ("photo", "video", "sticker", "animation", "document", "video_note", "voice")
+
+
+def _has_media(post: dict) -> bool:
+    return any(key in post for key in _MEDIA_KEYS)
 
 
 def _author_label(post: dict, chat: dict, fallback: str) -> str:

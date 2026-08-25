@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.db import get_db
 from app.models import Post, WatchSource
+from app.services import custom_markers as custom_markers_service
 from app.services import polling as polling_service
 from app.services import signals as signals_service
 from app.services import watchlist as watchlist_service
@@ -106,6 +107,63 @@ def watchlist_detail(source_id: int, request: Request, db: Session = Depends(get
     return templates.TemplateResponse(
         request, "source_detail.html", {"source": source, "posts": posts, "polled": polled == "1"}
     )
+
+
+@router.get("/guide")
+def guide_page(request: Request):
+    return templates.TemplateResponse(request, "guide.html", {})
+
+
+@router.get("/edits")
+def edits_page(
+    request: Request,
+    db: Session = Depends(get_db),
+    error: str | None = None,
+    added_matches: str | None = None,
+    loaded: str | None = None,
+):
+    manual_markers = custom_markers_service.list_manual_markers(db)
+    dictionary_groups = custom_markers_service.list_dictionary_groups(db)
+    return templates.TemplateResponse(
+        request,
+        "edits.html",
+        {
+            "manual_markers": manual_markers,
+            "dictionary_groups": dictionary_groups,
+            "error": error,
+            "added_matches": added_matches,
+            "loaded": loaded,
+        },
+    )
+
+
+@router.post("/edits/add")
+def edits_add(
+    phrase: str = Form(...),
+    weight: float = Form(3.0),
+    added_by: str = Form(...),
+    db: Session = Depends(get_db),
+):
+    try:
+        _, matches = custom_markers_service.add_marker(db, phrase=phrase, weight=weight, added_by=added_by)
+    except ValueError as exc:
+        return RedirectResponse(url=f"/edits?error={exc}", status_code=303)
+    return RedirectResponse(url=f"/edits?added_matches={matches}", status_code=303)
+
+
+@router.post("/edits/{marker_id}/delete")
+def edits_delete(marker_id: int, db: Session = Depends(get_db)):
+    try:
+        custom_markers_service.delete_marker(db, marker_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return RedirectResponse(url="/edits", status_code=303)
+
+
+@router.post("/edits/load-dictionary")
+def edits_load_dictionary(added_by: str = Form(...), db: Session = Depends(get_db)):
+    added, matches = custom_markers_service.load_mayak_dictionary(db, added_by=added_by)
+    return RedirectResponse(url=f"/edits?loaded={added}&added_matches={matches}", status_code=303)
 
 
 @router.get("/signals")

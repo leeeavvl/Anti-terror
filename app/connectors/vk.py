@@ -113,9 +113,18 @@ class VkConnector:
             post_date = datetime.fromtimestamp(item.get("date", 0), tz=timezone.utc)
             if post_date <= effective_since:
                 continue
+
             text = (item.get("text") or "").strip()
-            if not text:
+            has_media = bool(item.get("attachments"))
+            if not text and not has_media:
                 continue
+
+            if not text:
+                # Картинку/видео/стикер система не анализирует (нет
+                # компьютерного зрения) — помечаем пост для ручного
+                # просмотра специалистом, а не пропускаем молча.
+                text = "[медиа без подписи — фото/видео/стикер, требуется ручной просмотр]"
+
             from_id = item.get("from_id")
             posts.append(
                 RawPost(
@@ -123,6 +132,7 @@ class VkConnector:
                     text=text,
                     author_label=f"id{from_id}" if from_id is not None else "",
                     published_at=post_date,
+                    has_media=has_media,
                 )
             )
 

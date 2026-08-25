@@ -5,16 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0b0d12">
-  <title>{% block title %}Risk Watchlist{% endblock %} — Risk Watchlist</title>
+  <title>{% block title %}Маяк безопасности{% endblock %} — Маяк безопасности</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
   <header>
-    <div class="brand">Risk Watchlist</div>
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="lh-glow" cx="38%" cy="42%" r="60%">
+            <stop offset="0%" stop-color="#ff3b3b" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#ff3b3b" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="lh-beam" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff2d2d" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#ff2d2d" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" fill="#000000"/>
+        <circle cx="38" cy="42" r="38" fill="url(#lh-glow)"/>
+        <path d="M52 30 L98 10 L98 22 L52 34 Z" fill="url(#lh-beam)"/>
+        <path d="M52 34 L98 22 L98 34 L52 38 Z" fill="url(#lh-beam)" opacity="0.55"/>
+        <ellipse cx="38" cy="88" rx="16" ry="3" fill="#1a0505"/>
+        <path d="M26 88 L50 88 L47 78 L29 78 Z" fill="#7a1010" stroke="#3a0505" stroke-width="0.6"/>
+        <path d="M29 78 L47 78 L43 40 L33 40 Z" fill="#c81e2c" stroke="#5a0a0a" stroke-width="0.8"/>
+        <path d="M30.5 70 L45.5 70 L44.3 60 L31.7 60 Z" fill="#fdf6ec"/>
+        <path d="M32.5 52 L43.5 52 L42.6 44 L33.4 44 Z" fill="#fdf6ec"/>
+        <path d="M35 88 L41 88 L41 80 Q38 77 35 80 Z" fill="#5a0a0a"/>
+        <path d="M35.5 67 L39.5 67 L39.5 62 Q37.5 60 35.5 62 Z" fill="#fbe3b0" opacity="0.85"/>
+        <rect x="30" y="38" width="16" height="2" fill="#5a0a0a"/>
+        <rect x="32" y="28" width="12" height="10" fill="#c81e2c" stroke="#3a0505" stroke-width="0.8"/>
+        <rect x="33.3" y="29.3" width="4.5" height="7.4" fill="#fff6da"/>
+        <rect x="38.2" y="29.3" width="4.5" height="7.4" fill="#fff6da"/>
+        <circle cx="38" cy="33" r="3.2" fill="#ffe27a"/>
+        <path d="M31 28 Q38 16 45 28 Z" fill="#c81e2c" stroke="#3a0505" stroke-width="0.8"/>
+        <line x1="38" y1="16" x2="38" y2="9" stroke="#c81e2c" stroke-width="1.2"/>
+        <circle cx="38" cy="8" r="1.3" fill="#c81e2c"/>
+        <circle cx="82" cy="70" r="1.3" fill="#ff2d2d"/>
+      </svg>
+      <span>Маяк безопасности</span>
+    </div>
     <nav>
-      <a href="/">Дашборд</a>
+      <a href="/">Источники</a>
       <a href="/watchlist">Watchlist</a>
       <a href="/signals">Сигналы</a>
+      <a href="/edits">Правки</a>
+      <a href="/guide">Знай и действуй</a>
     </nav>
   </header>
   <main>

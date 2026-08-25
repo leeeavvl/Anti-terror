@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Правки{% endblock %}
+{% block content %}
+<h1>Правки</h1>
+<p class="page-intro">
+  Добавляйте сюда слова и фразы, которые система должна распознавать как маркер риска —
+  каждое сразу подключается к тому же объяснимому механизму скоринга, что и встроенные
+  маркеры: новые посты проверяются по нему автоматически, а уже накопленные — пересчитываются
+  сразу после добавления. Отдельной модели ИИ здесь нет — это прямое расширение прозрачных
+  правил, поэтому в «Сигналах» будет видно ровно то слово, которое сработало.
+</p>
+
+{% if error %}<p class="error">⚠ {{ error }}</p>{% endif %}
+{% if loaded is not none %}
+  <p class="success">
+    ✓ Словарь загружен: добавлено {{ loaded }} новых маркеров (уже загруженные ранее пропущены).
+    {% if added_matches|int > 0 %}
+      Пересчитала накопленные посты — найдено {{ added_matches }} совпадени{{ "е" if added_matches|int == 1 else "й" }}, они в «Сигналах».
+    {% endif %}
+  </p>
+{% elif added_matches is not none %}
+  <p class="success">
+    ✓ Маркер добавлен.
+    {% if added_matches|int > 0 %}
+      Пересчитала уже накопленные посты — найдено {{ added_matches }} совпадени{{ "е" if added_matches|int == 1 else "й" }} в старых постах, они появились в «Сигналах».
+    {% else %}
+      В уже накопленных постах совпадений не нашлось — сработает на новых.
+    {% endif %}
+  </p>
+{% endif %}
+
+<section class="guide-card" style="margin-bottom:24px;">
+  <h2>Словарь «Маяк»</h2>
+  <p class="section-hint">
+    Загруженный специалистом академический словарь маркеров риска — 12 категорий языка
+    вовлечения/радикализации (Kaati et al. 2026; Williams & Tzani 2022; Europol; RAN/3N model
+    и др.), веса и объяснения взяты из документа как есть.
+  </p>
+
+  {% if dictionary_groups %}
+    <table>
+      <thead><tr><th>Категория</th><th>Вес</th><th>Слов</th><th>Источник</th></tr></thead>
+      <tbody>
+      {% for g in dictionary_groups %}
+        <tr>
+          <td><strong>{{ g.category_title }}</strong><br><span class="section-hint">{{ g.note }}</span></td>
+          <td>{{ g.weight }}</td>
+          <td>{{ g.terms|length }}</td>
+          <td class="section-hint">{{ g.source }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="guide-placeholder">
+      <p>Словарь ещё не загружен.</p>
+    </div>
+  {% endif %}
+
+  <form method="post" action="/edits/load-dictionary" class="chat-form" style="margin-top:14px;">
+    <label>Ваше имя
+      <input type="text" name="added_by" placeholder="кто загружает" required>
+    </label>
+    <button type="submit" class="btn-primary">
+      {{ "Проверить обновления словаря" if dictionary_groups else "Загрузить словарь «Маяк»" }}
+    </button>
+  </form>
+</section>
+
+<h2>Добавлено вручную</h2>
+<div class="chat">
+  {% for m in manual_markers %}
+    <div class="chat-message">
+      <div class="chat-bubble">
+        <div class="chat-meta">{{ m.added_by or "специалист" }} · {{ m.added_at.strftime("%Y-%m-%d %H:%M") }}</div>
+        <div class="chat-phrase">«{{ m.phrase }}»</div>
+      </div>
+      <div class="chat-bubble chat-bubble-system">
+        <div class="chat-meta">Система</div>
+        <div>Подключено. Вес +{{ m.weight }}. Буду искать эту фразу (без учёта регистра) во всех новых постах.</div>
+      </div>
+      <form method="post" action="/edits/{{ m.id }}/delete" class="chat-delete"
+            onsubmit="return confirm('Убрать маркер «{{ m.phrase }}» из системы?');">
+        <button type="submit" class="btn-ghost">убрать</button>
+      </form>
+    </div>
+  {% else %}
+    <p class="empty-state">Пока ни одного слова-маркера не добавлено вручную. Начните ниже.</p>
+  {% endfor %}
+</div>
+
+<form method="post" action="/edits/add" class="add-form chat-form">
+  <label>Слово или фраза-маркер
+    <input type="text" name="phrase" placeholder="например: взорвать вокзал" required>
+  </label>
+  <label>Вес (1–2 низкий, 3–4 средний, 5–6 высокий сам по себе)
+    <select name="weight">
+      <option value="1">1 — низкий</option>
+      <option value="2">2 — низкий</option>
+      <option value="3" selected>3 — средний</option>
+      <option value="4">4 — средний</option>
+      <option value="5">5 — высокий</option>
+      <option value="6">6 — высокий</option>
+    </select>
+  </label>
+  <label>Ваше имя
+    <input type="text" name="added_by" placeholder="кто добавляет" required>
+  </label>
+  <button type="submit" class="btn-primary">Добавить в систему</button>
+</form>
+{% endblock %}

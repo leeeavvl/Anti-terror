@@ -67,6 +67,7 @@
       <option value="mock">Демо-режим — заготовленные тестовые посты, без реального API</option>
       <option value="vk">ВКонтакте — официальный API (реальные посты паблика)</option>
       <option value="telegram">Telegram — официальный Bot API (канал, группа, супергруппа)</option>
+      <option value="webpage">Публичная веб-страница по ссылке (блог, новостной сайт и т.п.)</option>
       <option value="generic_api">Другая платформа — официальный API вручную (JSON-конфиг)</option>
     </select>
   </label>
@@ -109,6 +110,16 @@
     </label>
   </div>
 
+  <div id="webpage_config_field" style="display:none" class="advanced-block">
+    <p class="section-hint">
+      Работает как обычный браузер: скачивает публичную страницу по указанной ссылке и
+      следит за изменением её текста — токен или конфиг не нужны, укажите точную ссылку
+      на страницу выше. Ограничение: сайты, которым для показа текста нужны JavaScript
+      или вход в аккаунт (например Яндекс.Дзен — там даже на публичную статью сайт отвечает
+      редиректом на форму входа), этим способом прочитать нельзя.
+    </p>
+  </div>
+
   <div id="generic_config_field" style="display:none" class="advanced-block">
     <p class="section-hint">
       Технические параметры подключения к реальному API произвольной платформы. Токен доступа
@@ -128,6 +139,7 @@
     var value = document.getElementById('connector_type').value;
     document.getElementById('vk_config_field').style.display = value === 'vk' ? 'block' : 'none';
     document.getElementById('tg_config_field').style.display = value === 'telegram' ? 'block' : 'none';
+    document.getElementById('webpage_config_field').style.display = value === 'webpage' ? 'block' : 'none';
     document.getElementById('generic_config_field').style.display = value === 'generic_api' ? 'block' : 'none';
   }
 </script>

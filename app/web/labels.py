@@ -6,6 +6,7 @@ CONNECTOR_LABELS = {
     "mock": "демо-режим (без реального API)",
     "vk": "ВКонтакте — официальный API",
     "telegram": "Telegram — официальный Bot API",
+    "webpage": "публичная веб-страница по ссылке",
     "generic_api": "официальный API платформы (другое)",
 }
 STATUS_LABELS = {"new": "новый", "reviewed": "проверен", "dismissed": "не риск", "escalated": "эскалирован"}

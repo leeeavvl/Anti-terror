@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Дашборд{% endblock %}
+{% block title %}Источники{% endblock %}
 {% block content %}
-<h1>Дашборд</h1>
+<h1>Источники</h1>
 <div class="cards">
   <div class="card">
     <span class="num">{{ counts.active_sources }}</span>
@@ -23,7 +23,21 @@
     <span class="num">{{ counts.by_level.high }}</span>
     <span class="label">высокий риск</span>
   </div>
+  {% if counts.media_pending > 0 %}
+  <div class="card media-pending-card">
+    <span class="num">{{ counts.media_pending }}</span>
+    <span class="label">медиа без подписи — нужен ручной просмотр</span>
+  </div>
+  {% endif %}
 </div>
+
+{% if counts.media_pending > 0 %}
+<p class="page-intro">
+  🖼 Изображения/стикеры/видео система автоматически не анализирует (нет компьютерного
+  зрения) — такие посты просто помечены для ручной проверки, а не пропущены молча.
+  Найти их можно на странице конкретного источника.
+</p>
+{% endif %}
 
 {% if counts.open_signals_total > 0 %}
 <p class="cta">

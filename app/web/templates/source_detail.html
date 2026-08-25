@@ -38,6 +38,8 @@
       <td>
         {% if post.signal %}
           <span class="level-badge level-{{ post.signal.level }}">{{ post.signal.level|level_label }} ({{ post.signal.score }})</span>
+        {% elif post.has_media %}
+          <span class="media-badge" title="Автоматический анализ изображений не производится — система не занимается компьютерным зрением">🖼 медиа — нужна ручная проверка</span>
         {% else %}
           <span class="no-signal">без сигнала</span>
         {% endif %}

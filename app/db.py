@@ -31,3 +31,29 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def migrate_schema() -> None:
+    """Лёгкая миграция без Alembic — на масштабе этого проекта (SQLite,
+    одна БД) добавление недостающих колонок вручную проще и понятнее, чем
+    подключать полноценный инструмент миграций. Base.metadata.create_all()
+    создаёт только отсутствующие ТАБЛИЦЫ, но не добавляет колонки в уже
+    существующие — это и делает эта функция, безопасно (IF NOT EXISTS по
+    факту, через проверку PRAGMA table_info)."""
+
+    with engine.connect() as conn:
+        posts_columns = {row[1] for row in conn.exec_driver_sql("PRAGMA table_info(posts)")}
+        if "has_media" not in posts_columns:
+            conn.exec_driver_sql("ALTER TABLE posts ADD COLUMN has_media BOOLEAN DEFAULT 0")
+            conn.commit()
+
+        marker_columns = {row[1] for row in conn.exec_driver_sql("PRAGMA table_info(custom_markers)")}
+        if marker_columns:  # таблица уже существовала до добавления новых полей
+            for column, ddl in (
+                ("category_title", "ALTER TABLE custom_markers ADD COLUMN category_title TEXT DEFAULT ''"),
+                ("source", "ALTER TABLE custom_markers ADD COLUMN source TEXT DEFAULT ''"),
+                ("note", "ALTER TABLE custom_markers ADD COLUMN note TEXT DEFAULT ''"),
+            ):
+                if column not in marker_columns:
+                    conn.exec_driver_sql(ddl)
+                    conn.commit()

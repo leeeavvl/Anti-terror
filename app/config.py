@@ -24,3 +24,7 @@ RISK_THRESHOLDS = {
 }
 
 SEED_DEMO_SOURCE = os.environ.get("SEED_DEMO_SOURCE", "1") == "1"
+
+# В контейнере/на сервере открывать браузер некому и не на чем — отключается
+# через переменную окружения (Dockerfile делает это автоматически).
+OPEN_BROWSER = os.environ.get("OPEN_BROWSER", "1") == "1"

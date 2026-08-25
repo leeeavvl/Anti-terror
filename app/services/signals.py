@@ -45,10 +45,20 @@ def dashboard_counts(db: Session) -> dict:
     by_level = {"low": 0, "medium": 0, "high": 0}
     for s in open_signals:
         by_level[s.level] = by_level.get(s.level, 0) + 1
+
+    # Посты с медиа (фото/видео/стикер) без подписи — их содержимое система
+    # не анализирует (нет компьютерного зрения), поэтому им нужен ручной
+    # просмотр специалистом; считаем только те, у которых при этом нет и
+    # текстового сигнала.
+    media_pending = db.execute(
+        select(Post).outerjoin(RiskSignal).where(Post.has_media.is_(True), RiskSignal.id.is_(None))
+    ).scalars().all()
+
     return {
         "active_sources": len(active_sources),
         "open_signals_total": len(open_signals),
         "by_level": by_level,
+        "media_pending": len(media_pending),
     }
 
 
