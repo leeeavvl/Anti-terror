@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0d12">
+  <title>{% block title %}Risk Watchlist{% endblock %} — Risk Watchlist</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Risk Watchlist</div>
+    <nav>
+      <a href="/">Дашборд</a>
+      <a href="/watchlist">Watchlist</a>
+      <a href="/signals">Сигналы</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    Только публичные посты явно добавленных источников. Никакого чтения переписки.
+    Никаких автоматических действий на платформах — только сигнал для специалиста.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ source.display_name }}{% endblock %}
+{% block content %}
+<p><a href="/watchlist">← к watchlist</a></p>
+<h1>{{ source.display_name }}</h1>
+<p class="meta">
+  Платформа: {{ source.platform_label or "—" }} · Способ подключения: {{ source.connector_type|connector_label }} ·
+  Идентификатор: <span class="mono">{{ source.source_identifier }}</span>
+</p>
+<p class="meta">
+  Добавил: {{ source.added_by }} · Добавлен: {{ source.added_at.strftime("%Y-%m-%d %H:%M:%S") }} ·
+  Последний опрос: {{ source.last_polled_at.strftime("%Y-%m-%d %H:%M:%S") if source.last_polled_at else "ещё не опрашивался" }}
+</p>
+
+{% if polled %}
+  <p class="success">✓ Источник опрошен только что — если ничего нового не появилось, значит новых постов пока нет.</p>
+{% endif %}
+
+<div class="row-actions">
+  <form method="post" action="/watchlist/{{ source.id }}/poll">
+    <button type="submit" class="btn-secondary">Проверить сейчас</button>
+  </form>
+  <form method="post" action="/watchlist/{{ source.id }}/delete"
+        onsubmit="return confirm('Удалить источник «{{ source.display_name }}» и все его посты и сигналы? Это необратимо.');">
+    <button type="submit" class="btn-danger">Удалить источник</button>
+  </form>
+</div>
+
+<h2>Публичные посты ({{ posts|length }})</h2>
+<table>
+  <thead><tr><th>Автор</th><th>Текст</th><th>Опубликован</th><th>Сигнал</th></tr></thead>
+  <tbody>
+  {% for post in posts %}
+    <tr>
+      <td>{{ post.author_label }}</td>
+      <td>{{ post.text|highlight_markers(post.signal.matched_markers) if post.signal else post.text }}</td>
+      <td>{{ post.published_at.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+      <td>
+        {% if post.signal %}
+          <span class="level-badge level-{{ post.signal.level }}">{{ post.signal.level|level_label }} ({{ post.signal.score }})</span>
+        {% else %}
+          <span class="no-signal">без сигнала</span>
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="4">Постов пока нет — подождите ближайший цикл опроса.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

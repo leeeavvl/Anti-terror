@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Сигналы{% endblock %}
+{% block content %}
+<h1>Открытые сигналы</h1>
+<p class="page-intro">
+  Каждая карточка — пост, в котором алгоритм нашёл один или несколько маркеров риска.
+  Это не диагноз и не обвинение — только повод для специалиста посмотреть на пост
+  и принять решение. Пока сигнал не отмечен, он остаётся здесь.
+</p>
+
+{% for signal in signals %}
+  <div class="signal-card level-{{ signal.level }}">
+    <div class="signal-header">
+      <span class="level-badge level-{{ signal.level }}">{{ signal.level|level_label }} риск · балл {{ signal.score }}</span>
+      <span>Источник: <a href="/watchlist/{{ signal.post.source.id }}">{{ signal.post.source.display_name }}</a></span>
+      <span>Автор поста: {{ signal.post.author_label }}</span>
+      <span>{{ signal.post.published_at.strftime("%Y-%m-%d %H:%M:%S") }}</span>
+    </div>
+    <p class="post-text">{{ signal.post.text|highlight_markers(signal.matched_markers) }}</p>
+    <p class="markers-label">Почему сработал сигнал:</p>
+    <div class="markers">
+      {% for m in signal.matched_markers %}
+        <span class="marker" title="ключевая фраза: «{{ m.matched_keyword }}»">{{ m.description }} (вес +{{ m.weight }})</span>
+      {% endfor %}
+    </div>
+    <form method="post" action="/signals/{{ signal.id }}/review" class="review-form">
+      <input type="text" name="reviewed_by" placeholder="Ваше имя" required>
+      <input type="text" name="note" placeholder="Комментарий (опционально)">
+      <div class="review-actions">
+        <button type="submit" name="status" value="reviewed" class="btn-secondary" title="Пост посмотрен, дальнейших действий не требуется">Проверено</button>
+        <button type="submit" name="status" value="dismissed" class="btn-ghost" title="Ложное срабатывание, риска нет">Не риск</button>
+        <button type="submit" name="status" value="escalated" class="btn-danger" title="Передать на более пристальное внимание">Эскалировать</button>
+      </div>
+    </form>
+  </div>
+{% else %}
+  <p class="empty-state">Открытых сигналов нет — все посты, которые попадали в систему, уже проверены.</p>
+{% endfor %}
+{% endblock %}

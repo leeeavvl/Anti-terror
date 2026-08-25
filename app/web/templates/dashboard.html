@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Дашборд{% endblock %}
+{% block content %}
+<h1>Дашборд</h1>
+<div class="cards">
+  <div class="card">
+    <span class="num">{{ counts.active_sources }}</span>
+    <span class="label">источников под наблюдением</span>
+  </div>
+  <div class="card">
+    <span class="num">{{ counts.open_signals_total }}</span>
+    <span class="label">сигналов ждут решения</span>
+  </div>
+  <div class="card level-low">
+    <span class="num">{{ counts.by_level.low }}</span>
+    <span class="label">низкий риск</span>
+  </div>
+  <div class="card level-medium">
+    <span class="num">{{ counts.by_level.medium }}</span>
+    <span class="label">средний риск</span>
+  </div>
+  <div class="card level-high">
+    <span class="num">{{ counts.by_level.high }}</span>
+    <span class="label">высокий риск</span>
+  </div>
+</div>
+
+{% if counts.open_signals_total > 0 %}
+<p class="cta">
+  <a class="btn-primary" href="/signals">Перейти к сигналам →</a>
+</p>
+{% endif %}
+
+<h2>Риск по источникам</h2>
+<p class="section-hint">
+  В каком именно паблике или канале что обнаружено — по открытым (непроверенным) сигналам.
+</p>
+{% if source_breakdown %}
+<table>
+  <thead>
+    <tr>
+      <th>Источник</th>
+      <th>Низкий</th>
+      <th>Средний</th>
+      <th>Высокий</th>
+      <th>Всего</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for row in source_breakdown %}
+    <tr>
+      <td><a href="/watchlist/{{ row.source.id }}">{{ row.source.display_name }}</a></td>
+      <td class="risk-cell level-low {{ 'zero' if row.low == 0 }}">{{ row.low }}</td>
+      <td class="risk-cell level-medium {{ 'zero' if row.medium == 0 }}">{{ row.medium }}</td>
+      <td class="risk-cell level-high {{ 'zero' if row.high == 0 }}">{{ row.high }}</td>
+      <td>{{ row.total }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty-state">Нет ни одного активного источника в <a href="/watchlist">watchlist</a>.</p>
+{% endif %}
+
+<div class="explainer">
+  <h2>Как это работает</h2>
+  <ol>
+    <li>Специалист добавляет публичный источник в <a href="/watchlist">watchlist</a> по ссылке или идентификатору.</li>
+    <li>Приложение периодически проверяет источник и находит новые публичные посты.</li>
+    <li>Каждый пост проверяется по прозрачному набору маркеров — если что-то совпало,
+        появляется <a href="/signals">сигнал</a> с объяснением, что именно и почему сработало.</li>
+    <li>Решение всегда принимает специалист: система не помечает аккаунты, не отправляет
+        сообщения и не выполняет никаких действий на платформах.</li>
+  </ol>
+</div>
+{% endblock %}

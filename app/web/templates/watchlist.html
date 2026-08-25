@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}Watchlist{% endblock %}
+{% block content %}
+<h1>Watchlist</h1>
+<p class="page-intro">
+  Здесь перечислены источники, за которыми наблюдает система. Источник появляется в этом
+  списке только после того, как специалист явно добавил его по ссылке или идентификатору —
+  автоматического поиска новых источников в приложении нет.
+</p>
+
+{% if error %}<p class="error">⚠ {{ error }}</p>{% endif %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Источник</th><th>Платформа</th><th>Способ подключения</th><th>Идентификатор</th>
+      <th>Добавил</th><th>Статус</th><th>Последний опрос</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for s in sources %}
+    <tr>
+      <td><a href="/watchlist/{{ s.id }}">{{ s.display_name }}</a></td>
+      <td>{{ s.platform_label or "—" }}</td>
+      <td>{{ s.connector_type|connector_label }}</td>
+      <td class="mono">{{ s.source_identifier }}</td>
+      <td>{{ s.added_by }}</td>
+      <td>
+        {% if s.is_active %}
+          <span class="status-pill status-on">наблюдается</span>
+        {% else %}
+          <span class="status-pill status-off">выключен</span>
+        {% endif %}
+      </td>
+      <td>{{ s.last_polled_at.strftime("%Y-%m-%d %H:%M:%S") if s.last_polled_at else "ещё не опрашивался" }}</td>
+      <td class="row-actions">
+        <form method="post" action="/watchlist/{{ s.id }}/poll">
+          <button type="submit" class="btn-secondary">проверить сейчас</button>
+        </form>
+        <form method="post" action="/watchlist/{{ s.id }}/toggle">
+          <button type="submit" class="btn-secondary">{{ "приостановить" if s.is_active else "возобновить" }}</button>
+        </form>
+        <form method="post" action="/watchlist/{{ s.id }}/delete"
+              onsubmit="return confirm('Удалить источник «{{ s.display_name }}» и все его посты и сигналы? Это необратимо.');">
+          <button type="submit" class="btn-danger">удалить</button>
+        </form>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="8">Пока нет источников в watchlist — добавьте первый в форме ниже.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h2>Добавить источник</h2>
+<p class="section-hint">
+  Заполните форму, чтобы начать наблюдение за конкретным публичным пабликом, каналом
+  или аккаунтом. Приложение не будет читать личные сообщения и не совершает никаких
+  действий на платформе — только собирает публичные посты и показывает сигнал специалисту.
+</p>
+<form method="post" action="/watchlist/add" class="add-form">
+  <label>Название платформы
+    <input type="text" name="platform_label" placeholder="напр. VK, Telegram">
+  </label>
+  <label>Способ подключения
+    <select name="connector_type" id="connector_type" onchange="updateConnectorFields()">
+      <option value="mock">Демо-режим — заготовленные тестовые посты, без реального API</option>
+      <option value="vk">ВКонтакте — официальный API (реальные посты паблика)</option>
+      <option value="telegram">Telegram — официальный Bot API (канал, группа, супергруппа)</option>
+      <option value="generic_api">Другая платформа — официальный API вручную (JSON-конфиг)</option>
+    </select>
+  </label>
+  <label>Ссылка или идентификатор источника
+    <input type="text" name="source_identifier" placeholder="напр. https://vk.com/название_паблика или https://t.me/название_канала" required>
+  </label>
+  <label>Отображаемое имя <span class="optional">(необязательно)</span>
+    <input type="text" name="display_name" placeholder="как источник будет подписан в списке">
+  </label>
+  <label>Кто добавляет
+    <input type="text" name="added_by" placeholder="ваше имя" required>
+  </label>
+
+  <div id="vk_config_field" style="display:none" class="advanced-block">
+    <p class="section-hint">
+      Нужен токен доступа ВКонтакте с правом чтения стены (например, токен пользователя/сообщества
+      или сервисный токен из <a href="https://vk.com/dev" target="_blank" rel="noopener">vk.com/dev</a>).
+      Сам токен сюда не вводится — только имя переменной окружения, в которой он задан (см. <span class="mono">.env</span>).
+      Приложение читает только публичную стену паблика (метод wall.get) и никогда не пишет на платформу.
+    </p>
+    <label>Переменная окружения с токеном
+      <input type="text" name="vk_token_env_var" placeholder="VK_TOKEN" value="VK_TOKEN">
+    </label>
+  </div>
+
+  <div id="tg_config_field" style="display:none" class="advanced-block">
+    <p class="section-hint">
+      Нужен бот, созданный через <span class="mono">@BotFather</span>, добавленный
+      администратором в целевой публичный канал, группу или супергруппу (иначе Telegram
+      не отдаёт боту сообщения). Для канала с комментариями бота нужно добавить
+      администратором ещё и в его группу обсуждений отдельно — тогда приложение
+      будет читать и комментарии под постами тоже, не только сами посты. Видно
+      будет только то, что появится после добавления бота — старую историю Bot API
+      не показывает. Сам токен бота сюда не вводится — только имя переменной
+      окружения, в которой он задан (см. <span class="mono">.env</span>). Приложение
+      только читает новые сообщения и никогда не отправляет их от имени бота.
+    </p>
+    <label>Переменная окружения с токеном бота
+      <input type="text" name="tg_token_env_var" placeholder="TG_BOT_TOKEN" value="TG_BOT_TOKEN">
+    </label>
+  </div>
+
+  <div id="generic_config_field" style="display:none" class="advanced-block">
+    <p class="section-hint">
+      Технические параметры подключения к реальному API произвольной платформы. Токен доступа
+      здесь не указывается — только имя переменной окружения, где он хранится.
+    </p>
+    <label>Конфигурация подключения (JSON)
+      <textarea name="config_raw" rows="8"
+        placeholder='{"base_url": "https://api.platform.example", "endpoint": "/channels/{id}/posts", "auth_env_var": "PLATFORM_TOKEN", "items_path": "items", "field_map": {"external_id": "id", "text": "text", "author_label": "author.name", "published_at": "created_at"}}'></textarea>
+    </label>
+  </div>
+
+  <button type="submit" class="btn-primary">Добавить в watchlist</button>
+</form>
+
+<script>
+  function updateConnectorFields() {
+    var value = document.getElementById('connector_type').value;
+    document.getElementById('vk_config_field').style.display = value === 'vk' ? 'block' : 'none';
+    document.getElementById('tg_config_field').style.display = value === 'telegram' ? 'block' : 'none';
+    document.getElementById('generic_config_field').style.display = value === 'generic_api' ? 'block' : 'none';
+  }
+</script>
+{% endblock %}
