@@ -8,7 +8,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from app.config import HOST, OPEN_BROWSER, PORT, POLL_INTERVAL_SECONDS, SEED_DEMO_SOURCE
+from app.config import BASE_DIR, HOST, OPEN_BROWSER, PORT, POLL_INTERVAL_SECONDS, SEED_DEMO_SOURCE
 from app.db import Base, SessionLocal, engine, migrate_schema
 from app.models import WatchSource
 from app.services.polling import poll_all_sources
@@ -16,8 +16,6 @@ from app.web.routes import router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("risk_watchlist.main")
-
-BASE_DIR = Path(__file__).resolve().parent
 
 app = FastAPI(title="Маяк безопасности")
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "app" / "web" / "static")), name="static")

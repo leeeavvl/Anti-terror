@@ -16,6 +16,7 @@ MOCK_RELEASE_INTERVAL_SECONDS = int(os.environ.get("MOCK_RELEASE_INTERVAL_SECOND
 GENERIC_API_TIMEOUT_SECONDS = int(os.environ.get("GENERIC_API_TIMEOUT_SECONDS", "10"))
 
 HOST = os.environ.get("HOST", "127.0.0.1")
+
 PORT = int(os.environ.get("PORT", "8000"))
 
 RISK_THRESHOLDS = {
