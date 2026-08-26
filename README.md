@@ -50,6 +50,12 @@ docker run -p 8000:8000 \
 в образ не попадает (см. `.dockerignore`). В контейнере не открывается браузер
 автоматически (`OPEN_BROWSER=0`) — приложение доступно на `http://localhost:8000`.
 
+Тот же результат — через `docker-compose.yml`:
+
+```bash
+docker compose up --build
+```
+
 ## Подключение реального API — ВКонтакте
 
 Встроенный коннектор `app/connectors/vk.py` использует официальный метод VK API
