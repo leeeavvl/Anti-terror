@@ -9,6 +9,23 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="{% block body_class %}{% endblock %}">
+  <svg width="0" height="0" style="position: absolute; overflow: hidden;" aria-hidden="true">
+    <filter id="red-duotone" color-interpolation-filters="sRGB">
+      <!-- Переводит картинку в яркость (луминанс), затем красит тёмное в
+           #c81e2c (тёмно-красный маяка на иконке), светлое — в белый: цвет
+           получается ровным, не зависящим от исходного оттенка картинки. -->
+      <feColorMatrix type="matrix" values="
+        0.2126 0.7152 0.0722 0 0
+        0.2126 0.7152 0.0722 0 0
+        0.2126 0.7152 0.0722 0 0
+        0      0      0      1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.784 1"/>
+        <feFuncG type="table" tableValues="0.118 1"/>
+        <feFuncB type="table" tableValues="0.173 1"/>
+      </feComponentTransfer>
+    </filter>
+  </svg>
   <header>
     <div class="brand">
       <svg class="brand-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

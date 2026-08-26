@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass
 
 from app.config import RISK_THRESHOLDS
+from app.risk_engine.fuzzy import fuzzy_phrase_search, tokenize
 from app.risk_engine.rules import MARKERS
 
 _COMPILED_MARKERS = [
@@ -36,11 +37,13 @@ def score_post(text: str, extra_markers: list[dict] | None = None) -> RiskAssess
 
     extra_markers — слова-маркеры, добавленные специалистом вручную через
     вкладку «Правки» либо загруженные из словаря (см. services/custom_markers.py);
-    каждый — точная фраза (без учёта регистра), а не regex-шаблон, чтобы
-    специалисту не нужно было разбираться в регулярных выражениях. Как и для
-    встроенных маркеров, на категорию засчитывается не больше одного
-    совпадения — иначе несколько слов одной темы («время», «место», «план» —
-    все из категории planning) раздували бы балл суммированием весов."""
+    каждый — фраза (без учёта регистра), а не regex-шаблон, чтобы специалисту
+    не нужно было разбираться в регулярных выражениях. Ищутся с допуском на
+    опечатку — «геноцид» находит и «гиноцид» (см. risk_engine/fuzzy.py:
+    расстояние Левенштейна ≤1 для слов от 4 букв). Как и для встроенных
+    маркеров, на категорию засчитывается не больше одного совпадения — иначе
+    несколько слов одной темы («время», «место», «план» — все из категории
+    planning) раздували бы балл суммированием весов."""
 
     matched: list[MatchedMarker] = []
 
@@ -58,21 +61,20 @@ def score_post(text: str, extra_markers: list[dict] | None = None) -> RiskAssess
                 )
                 break
 
-    text_lower = text.lower()
+    text_tokens = tokenize(text.lower())
     seen_extra_categories: set[str] = set()
     for marker in extra_markers or []:
         category = marker["category"]
         if category in seen_extra_categories:
             continue
-        phrase_lower = marker["phrase"].lower()
-        idx = text_lower.find(phrase_lower)
-        if idx != -1:
+        found = fuzzy_phrase_search(text_tokens, text, marker["phrase"])
+        if found is not None:
             matched.append(
                 MatchedMarker(
                     category=category,
                     description=marker["description"],
                     weight=marker["weight"],
-                    matched_keyword=text[idx : idx + len(marker["phrase"])],
+                    matched_keyword=found,
                 )
             )
             seen_extra_categories.add(category)

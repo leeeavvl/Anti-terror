@@ -80,6 +80,14 @@
   text-align: center;
 }
 .guide-placeholder p { margin: 4px 0; }
+.guide-pdf {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+  background: var(--panel-2);
+}
+.guide-pdf-embed { width: 100%; height: 480px; display: block; border: none; }
 
 .chat {
   display: flex;
@@ -275,6 +283,9 @@ tbody tr:hover { background: var(--panel-2); }
 }
 .card.media-pending-card { border-top-color: var(--medium); }
 .card.media-pending-card .num { color: var(--medium); }
+
+.card.telegram-qr-card { align-items: center; justify-content: center; gap: 8px; margin-left: 20px; }
+.telegram-qr-img { width: 140px; height: 140px; border-radius: 8px; background: #fff; padding: 4px; filter: url(#red-duotone); }
 
 .risk-cell { font-weight: 700; font-size: 1.05em; }
 .risk-cell.level-low { color: var(--low); }

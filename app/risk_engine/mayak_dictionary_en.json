@@ -1,0 +1,906 @@
+[
+  {
+    "term": "join us",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "join now",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "sign up",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "we need people",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "looking for people",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "come be part of",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "be with us",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "our community",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "our team",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "want to join",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "ready to join",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "ready to help",
+    "category": "recruitment",
+    "category_title": "Вовлечение / recruitment",
+    "weight": 1.5,
+    "source": "Williams & Tzani (2022); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер приглашения, вовлечения или набора в группу/активность. Сам по себе не свидетельствует об экстремизме."
+  },
+  {
+    "term": "mission",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "task",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "assignment",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "complete the mission",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "next assignment",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "do this for us",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "challenge",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "prove yourself",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "report back",
+    "category": "tasking",
+    "category_title": "Задание / tasking",
+    "weight": 1.7,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер постановки задания, испытания или поручения. Значим главным образом в сочетании с секретностью, давлением или вознаграждением."
+  },
+  {
+    "term": "don't tell anyone",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "keep it secret",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "just between us",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "delete this message",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "delete this chat",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "don't save this",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "private channel",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "private group",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "stay anonymous",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "no questions asked",
+    "category": "secrecy",
+    "category_title": "Секретность / secrecy",
+    "weight": 1.8,
+    "source": "Demina & Matorina (2025); Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер сокрытия коммуникации или попытки ограничить обращение к взрослым/третьим лицам. Использовать как усиливающий признак."
+  },
+  {
+    "term": "our family",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "our brotherhood",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "you belong here",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "you're one of us",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "you're with us",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "we understand you",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "you're special",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "you deserve this",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "respect",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "status",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "recognition",
+    "category": "belonging_status",
+    "category_title": "Принадлежность и статус",
+    "weight": 1.0,
+    "source": "Europol; RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер обещания принадлежности, признания, статуса или эмоционального принятия."
+  },
+  {
+    "term": "payment",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "we'll pay you",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "money",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "reward",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "bonus",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "prize",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "fast money",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "easy money",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "get paid",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "you'll be rewarded",
+    "category": "reward",
+    "category_title": "Вознаграждение / reward",
+    "weight": 1.3,
+    "source": "Europol — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер денежного или иного вознаграждения за участие/выполнение действий."
+  },
+  {
+    "term": "don't let us down",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "you owe us",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "prove it",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "don't be a coward",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "last chance",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "decide now",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "no turning back",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "we're counting on you",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "don't disappoint us",
+    "category": "pressure_manipulation",
+    "category_title": "Давление и манипуляция",
+    "weight": 1.5,
+    "source": "Demina & Matorina (2025); youth recruitment literature — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер психологического давления, стыда, принуждения к доказательству лояльности или срочному решению."
+  },
+  {
+    "term": "injustice",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "unfair",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "humiliated",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "betrayal",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "they lied to us",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "everyone's against us",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "no one listens to us",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "they hate us",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "unforgivable",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "revenge",
+    "category": "grievance",
+    "category_title": "Обида / grievance",
+    "weight": 0.8,
+    "source": "Kaati et al. (2026); RAN / 3N model — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер переживания несправедливости, унижения, предательства или мести. Низкий вес: отдельно не указывает на насильственный риск."
+  },
+  {
+    "term": "rage",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "hatred",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "i hate them",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "furious",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "fed up",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "enough is enough",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "i'm done with this",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "so angry",
+    "category": "anger",
+    "category_title": "Гнев / anger",
+    "weight": 0.6,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Эмоциональный маркер гнева. Использовать только как слабый признак в составе комбинации."
+  },
+  {
+    "term": "us vs them",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "our side",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "their side",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "the enemy",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "enemies",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "not one of us",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "only us",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "true believers",
+    "category": "polarization",
+    "category_title": "Поляризация «мы — они»",
+    "weight": 1.0,
+    "source": "Williams & Tzani (2022) — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер противопоставления внутренней и внешней группы. Требует контекстного анализа."
+  },
+  {
+    "term": "violence",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "they deserve it",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "they had it coming",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "it's justified",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "no other way",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "fight back",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "respond with force",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "make them pay",
+    "category": "violence_approval",
+    "category_title": "Одобрение конфликта или насилия",
+    "weight": 2.0,
+    "source": "Williams & Tzani (2022); legal risk categories — англоязычные эквиваленты той же категории",
+    "explanation": "Маркер оправдания или одобрения насилия/силового ответа. Не содержит реальных лозунгов или инструкций."
+  },
+  {
+    "term": "they'll see",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "i'll show them",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "the time has come",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "i'm ready",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "ready to act",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "it's decided",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "you'll see soon",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "soon it'll be over",
+    "category": "leakage",
+    "category_title": "Leakage — намёк на намерение",
+    "weight": 2.5,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Косвенный или прямой намёк на намерение причинить вред либо на скорое действие. Требует обязательной проверки специалистом."
+  },
+  {
+    "term": "the plan",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "preparation",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "next step",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "the target",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "the location",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "meeting point",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "the route",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "coordinate with",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "get ready",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  },
+  {
+    "term": "final stage",
+    "category": "planning",
+    "category_title": "Планирование / operational details",
+    "weight": 2.7,
+    "source": "Kaati et al. (2026) — англоязычные эквиваленты той же категории",
+    "explanation": "Нейтральные маркеры планирования и координации. Отдельные слова вроде «время» или «место» не должны давать высокий риск."
+  }
+]

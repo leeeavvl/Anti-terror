@@ -7,11 +7,14 @@ from sqlalchemy.orm import Session
 
 from app.models import CustomMarker, Post, RiskSignal
 from app.risk_engine.scorer import score_post
+from app.risk_engine.translit import contains_cyrillic, transliterate_variants
 
 MIN_WEIGHT = 0.1
 MAX_WEIGHT = 6.0
 
-MAYAK_DICTIONARY_PATH = Path(__file__).resolve().parent.parent / "risk_engine" / "mayak_dictionary.json"
+_RISK_ENGINE_DIR = Path(__file__).resolve().parent.parent / "risk_engine"
+MAYAK_DICTIONARY_PATH = _RISK_ENGINE_DIR / "mayak_dictionary.json"
+MAYAK_DICTIONARY_EN_PATH = _RISK_ENGINE_DIR / "mayak_dictionary_en.json"
 
 
 MANUAL_SOURCE = "Добавлено специалистом вручную"
@@ -47,17 +50,33 @@ def as_extra_markers(db: Session) -> list[dict]:
 
     category — ключ группировки при скоринге (см. scorer.py): для записей из
     словаря это настоящая категория (recruitment, planning и т.д.), для ручных
-    записей из «Правок» — сама фраза, чтобы каждая считалась независимо."""
+    записей из «Правок» — сама фраза, чтобы каждая считалась независимо.
 
-    return [
-        {
-            "category": m.category,
-            "description": (f"{m.note} — «{m.phrase}»" if m.note else f"«{m.phrase}» — добавлено специалистом"),
-            "weight": m.weight,
-            "phrase": m.phrase,
-        }
-        for m in list_markers(db)
-    ]
+    Для каждого кириллического маркера дополнительно добавляются его
+    транслит-варианты латиницей («геноцид» → «genotsid» И «genocid» —
+    неоднозначные буквы вроде «ц» дают оба распространённых написания, а
+    дальше нечёткий поиск добирает мелкую разницу вплоть до настоящего
+    английского слова «genocide»). У всех вариантов та же category, что у
+    оригинала, поэтому на балл они влияют как ОДНО совпадение, сколько бы их
+    ни было и что бы из них ни нашлось в посте."""
+
+    markers = []
+    for m in list_markers(db):
+        description = f"{m.note} — «{m.phrase}»" if m.note else f"«{m.phrase}» — добавлено специалистом"
+        markers.append({"category": m.category, "description": description, "weight": m.weight, "phrase": m.phrase})
+
+        if contains_cyrillic(m.phrase):
+            for translit_phrase in transliterate_variants(m.phrase):
+                markers.append(
+                    {
+                        "category": m.category,
+                        "description": f"{description} (латиницей: «{translit_phrase}»)",
+                        "weight": m.weight,
+                        "phrase": translit_phrase,
+                    }
+                )
+
+    return markers
 
 
 def add_marker(db: Session, *, phrase: str, weight: float, added_by: str) -> tuple[CustomMarker, int]:
@@ -101,15 +120,23 @@ def delete_marker(db: Session, marker_id: int) -> None:
 
 
 def load_mayak_dictionary(db: Session, *, added_by: str) -> tuple[int, int]:
-    """Массово загружает словарь «Маяк» (app/risk_engine/mayak_dictionary.json,
-    структура {term, category, weight, source, explanation} — как указано
-    самим специалистом в документе) в custom_markers. Пропускает записи, уже
-    загруженные ранее (по паре phrase+category), чтобы повторный запуск не
-    плодил дубли. Возвращает (сколько добавлено, сколько сигналов найдено при
-    пересчёте уже накопленных постов)."""
+    """Массово загружает словарь «Маяк» — русскую версию (mayak_dictionary.json)
+    и англоязычные эквиваленты тех же 12 категорий (mayak_dictionary_en.json,
+    те же обобщённые слова-концепты вербовки/секретности/давления и т.д.,
+    просто на другом языке, а не новые категории) — структура записей одна и
+    та же: {term, category, weight, source, explanation}. Категории совпадают
+    с русской версией (category: "planning" и там, и там), поэтому дедупликация
+    по категории в scorer.py работает одинаково независимо от языка поста.
 
-    with open(MAYAK_DICTIONARY_PATH, encoding="utf-8") as f:
-        entries = json.load(f)
+    Пропускает записи, уже загруженные ранее (по паре phrase+category), чтобы
+    повторный запуск не плодил дубли. Возвращает (сколько добавлено, сколько
+    сигналов найдено при пересчёте уже накопленных постов)."""
+
+    entries = []
+    for path in (MAYAK_DICTIONARY_PATH, MAYAK_DICTIONARY_EN_PATH):
+        if path.exists():
+            with open(path, encoding="utf-8") as f:
+                entries.extend(json.load(f))
 
     existing = {(m.phrase, m.category) for m in list_markers(db)}
 
