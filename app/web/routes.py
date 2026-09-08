@@ -33,7 +33,10 @@ def dashboard(request: Request, db: Session = Depends(get_db)):
 @router.get("/watchlist")
 def watchlist_page(request: Request, db: Session = Depends(get_db), error: str | None = None):
     sources = watchlist_service.list_sources(db)
-    return templates.TemplateResponse(request, "watchlist.html", {"sources": sources, "error": error})
+    counts = signals_service.dashboard_counts(db)
+    return templates.TemplateResponse(
+        request, "watchlist.html", {"sources": sources, "error": error, "counts": counts}
+    )
 
 
 @router.post("/watchlist/add")

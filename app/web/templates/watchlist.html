@@ -10,6 +10,25 @@
 
 {% if error %}<p class="error">⚠ {{ error }}</p>{% endif %}
 
+<div class="cards">
+  <div class="card level-low">
+    <span class="num">{{ counts.by_level.low }}</span>
+    <span class="label">низкий риск</span>
+  </div>
+  <div class="card level-medium">
+    <span class="num">{{ counts.by_level.medium }}</span>
+    <span class="label">средний риск</span>
+  </div>
+  <div class="card level-high">
+    <span class="num">{{ counts.by_level.high }}</span>
+    <span class="label">высокий риск</span>
+  </div>
+  <div class="card media-pending-card">
+    <span class="num">{{ counts.media_pending }}</span>
+    <span class="label">🖼 изображения — нужен ручной просмотр</span>
+  </div>
+</div>
+
 <table>
   <thead>
     <tr>
