@@ -23,12 +23,10 @@
     <span class="num">{{ counts.by_level.high }}</span>
     <span class="label">высокий риск</span>
   </div>
-  {% if counts.media_pending > 0 %}
   <div class="card media-pending-card">
     <span class="num">{{ counts.media_pending }}</span>
-    <span class="label">медиа без подписи — нужен ручной просмотр</span>
+    <span class="label">🖼 изображения — нужен ручной просмотр</span>
   </div>
-  {% endif %}
   <div class="card telegram-qr-card">
     <img src="/static/img/telegram-qr.jpg" alt="QR-код Telegram-бота" class="telegram-qr-img">
     <span class="label">Telegram-бот</span>
