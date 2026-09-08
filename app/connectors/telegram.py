@@ -41,7 +41,6 @@ from pydantic import BaseModel
 
 from app.config import GENERIC_API_TIMEOUT_SECONDS
 from app.connectors.base import RawPost
-from app.risk_engine import image_analysis
 
 if TYPE_CHECKING:
     from app.models import WatchSource
@@ -50,8 +49,6 @@ logger = logging.getLogger("risk_watchlist.connectors.telegram")
 
 TELEGRAM_UPDATES_URL = "https://api.telegram.org/bot{token}/getUpdates"
 TELEGRAM_GET_CHAT_URL = "https://api.telegram.org/bot{token}/getChat"
-TELEGRAM_GET_FILE_URL = "https://api.telegram.org/bot{token}/getFile"
-TELEGRAM_FILE_DOWNLOAD_URL = "https://api.telegram.org/file/bot{token}/{file_path}"
 UPDATES_LIMIT = 100
 
 
@@ -148,9 +145,9 @@ class TelegramConnector:
             if post_date <= effective_since:
                 continue
 
-            caption = (post.get("text") or post.get("caption") or "").strip()
+            text = (post.get("text") or post.get("caption") or "").strip()
             has_media = _has_media(post)
-            if not caption and not has_media:
+            if not text and not has_media:
                 continue  # ни текста, ни медиа — служебное сообщение, нечего показывать
 
             # Автоматическая пересылка поста канала в группу обсуждений тоже
@@ -159,23 +156,11 @@ class TelegramConnector:
             if is_comment and post.get("is_automatic_forward"):
                 continue
 
-            if "photo" in post:
-                # Фото — единственный вид медиа, который система умеет читать
-                # (через Claude, см. risk_engine/image_analysis.py). Видео,
-                # стикеры и голосовые по-прежнему не анализируются.
-                analysis_text = _analyze_telegram_photo(token, post["photo"])
-                if analysis_text is not None:
-                    text = f"{analysis_text} Подпись: {caption}" if caption else analysis_text
-                    has_media = False  # уже проверено автоматически, ручной просмотр не обязателен
-                else:
-                    text = caption or "[фото — не удалось проанализировать автоматически, требуется ручной просмотр]"
-            elif not caption:
-                # Видео/стикер/голосовое и т.п. система не анализирует (нет
-                # такой возможности) — вместо того чтобы молча пропустить
-                # пост, помечаем его для ручного просмотра.
-                text = "[медиа без подписи — видео/стикер/голосовое, требуется ручной просмотр]"
-            else:
-                text = caption
+            if not text:
+                # Картинку/стикер/видео система не анализирует (нет
+                # компьютерного зрения) — вместо того чтобы молча
+                # пропустить пост, помечаем его для ручного просмотра.
+                text = "[медиа без подписи — фото/видео/стикер, требуется ручной просмотр]"
 
             message_id = post.get("message_id")
             author_label = _author_label(post, chat, channel_username)
@@ -221,53 +206,6 @@ def _get_linked_chat_id(token: str, channel_username: str, source: "WatchSource"
         return None
 
     return data.get("result", {}).get("linked_chat_id")
-
-
-def _analyze_telegram_photo(token: str, photo_sizes: list[dict]) -> str | None:
-    """photo_sizes — массив размеров одного и того же фото от Telegram;
-    берём самый крупный. Возвращает готовую фразу для текста поста (см.
-    rules.py, категории image_*) либо None, если фото скачать/проанализировать
-    не удалось — тогда вызывающий код откатывается на «нужен ручной просмотр»."""
-
-    if not photo_sizes:
-        return None
-
-    largest = max(photo_sizes, key=lambda p: p.get("file_size", 0))
-    image_bytes = _download_telegram_file(token, largest["file_id"])
-    if image_bytes is None:
-        return None
-
-    result = image_analysis.analyze_image(image_bytes, mime_type="image/jpeg")
-    if result is None:
-        return None
-
-    if result["category"] == "none":
-        return "[Фото проверено автоматически (ИИ) — явных признаков риска не обнаружено.]"
-    return f"[Фото проанализировано ИИ: {result['label']}.] {result['description']}"
-
-
-def _download_telegram_file(token: str, file_id: str) -> bytes | None:
-    try:
-        response = requests.get(
-            TELEGRAM_GET_FILE_URL.format(token=token),
-            params={"file_id": file_id},
-            timeout=GENERIC_API_TIMEOUT_SECONDS,
-        )
-        data = response.json()
-        if not data.get("ok"):
-            logger.warning("Telegram getFile вернул ошибку: %s", data.get("description"))
-            return None
-        file_path = data["result"]["file_path"]
-
-        file_response = requests.get(
-            TELEGRAM_FILE_DOWNLOAD_URL.format(token=token, file_path=file_path),
-            timeout=GENERIC_API_TIMEOUT_SECONDS,
-        )
-        file_response.raise_for_status()
-        return file_response.content
-    except (requests.exceptions.RequestException, ValueError, KeyError) as exc:
-        logger.warning("Не удалось скачать файл из Telegram: %s", exc)
-        return None
 
 
 _MEDIA_KEYS = ("photo", "video", "sticker", "animation", "document", "video_note", "voice")
